@@ -7,10 +7,10 @@ package jp.co.example.dl.util;
 public class ActivationFunction {
 
 	/**
-	 * パーセプトロンのステップ関数。
+	 * a=0のステップ関数。
 	 *
-	 * @param x 素性ベクトルのそれぞれの要素と重さを掛け合わせたものの総和
-	 * @return 活性化した値
+	 * @param x 入力値
+	 * @return 引数が0以上なら1を、そうでないなら-1を返す
 	 */
 	public static int step(double x) {
 		return x >= 0 ? 1 : -1;
