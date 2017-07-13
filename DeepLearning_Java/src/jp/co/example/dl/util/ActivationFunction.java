@@ -1,5 +1,7 @@
 package jp.co.example.dl.util;
 
+import java.util.stream.DoubleStream;
+
 /**
  * 活性化関数を実装するクラス。
  *
@@ -17,26 +19,11 @@ public class ActivationFunction {
 	}
 
 	public static double[] softmax(double[] x, int n) {
-		double[] y = new double[n];
-		double max = 0;
-		double sum = 0;
+		double max = DoubleStream.of(x).max().orElse(0);
+		double[] y = DoubleStream.of(x).map(a -> Math.exp(a - max)).toArray();
+		double sum = DoubleStream.of(y).sum();
 
-		for (int i = 0; i < n; i++) {
-			if (max < x[i]) {
-				max = x[i];
-			}
-		}
-
-		for (int i = 0; i < n; i++) {
-			y[i] = Math.exp(x[i] - max);
-			sum += y[i];
-		}
-
-		for (int i = 0; i < n; i++) {
-			y[i] /= sum;
-		}
-
-		return y;
+		return DoubleStream.of(y).map(a -> a / sum).toArray();
 	}
 
 }
