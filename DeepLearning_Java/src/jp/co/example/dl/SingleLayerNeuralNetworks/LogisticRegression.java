@@ -99,7 +99,7 @@ public class LogisticRegression {
 			preActivation[j] += b[j]; // 線形活性にも対応させている
 		}
 
-		return ActivationFunction.softmax(preActivation, nOut);
+		return ActivationFunction.softmax(preActivation);
 	}
 
 	public static void main(String[] args) {
