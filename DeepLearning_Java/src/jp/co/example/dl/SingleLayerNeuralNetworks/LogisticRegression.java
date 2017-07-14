@@ -28,7 +28,20 @@ public class LogisticRegression {
 		b = new double[nOut];
 	}
 
+	/**
+	 * 学習を行います。
+	 * ロジスティック回帰学習とは、正しい重みとバイアスを探し出すことです。
+	 *
+	 * @param X トレーニングデータ（ベクトル）の配列
+	 * @param T ラベル値（要素が 0 または -1 のベクトル）の配列
+	 * @param minibatchSize ミニバッチのサイズ
+	 * @param learningRate 学習率
+	 * @return 予測データと正しいデータとの誤差
+	 */
 	public double[][] train(double[][] X, int[][] T, int minibatchSize, double learningRate) {
+		// asert X.length == minibatchSize
+
+		// grad...勾配、Wで偏微分したものとbで偏微分したものをそれぞれ保持
 		double[][] grad_W = new double[nOut][nIn];
 		double[] grad_b = new double[nOut];
 
@@ -61,6 +74,12 @@ public class LogisticRegression {
 		return dY;
 	}
 
+	/**
+	 * ネットワークを通じて予測を返す。
+	 *
+	 * @param x データ
+	 * @return ロジスティック回帰による予測結果
+	 */
 	public Integer[] predict(double[] x) {
 		// 入力データを学習済みモデルによって活性化し、出力層へ
 		double[] y = output(x);
@@ -84,6 +103,12 @@ public class LogisticRegression {
 		return t;
 	}
 
+	/**
+	 * ソフトマックス関数を使用することで、入力データに対する確率分布を求める。
+	 *
+	 * @param x データ
+	 * @return データに対する確率分布
+	 */
 	private double[] output(double[] x) {
 		double[] preActivation = new double[nOut];
 
@@ -98,6 +123,11 @@ public class LogisticRegression {
 		return ActivationFunction.softmax(preActivation);
 	}
 
+	/**
+	 * エントリーポイント。
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		final Random rng = new Random(1234); // seed
 

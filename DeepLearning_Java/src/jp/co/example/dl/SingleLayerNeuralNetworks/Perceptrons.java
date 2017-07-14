@@ -50,7 +50,7 @@ public class Perceptrons {
 	}
 
 	/**
-	 * ネットワークを通じて活性化するための活性化関数。
+	 * ネットワークを通じて予測を返す。
 	 *
 	 * @param x データ
 	 * @return パーセプトロンによる予測結果
@@ -66,6 +66,7 @@ public class Perceptrons {
 
 	/**
 	 * エントリーポイント。
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
