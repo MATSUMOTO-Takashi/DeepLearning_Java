@@ -64,8 +64,6 @@ public class LogisticRegression {
 	public Integer[] predict(double[] x) {
 		// 入力データを学習済みモデルによって活性化し、出力層へ
 		double[] y = output(x);
-		// 出力は確率で表されているため、ラベル（分類されたクラス）に変換
-		Integer[] t = new Integer[nOut];
 
 		int argmax = -1;
 		double max = 0;
@@ -77,13 +75,11 @@ public class LogisticRegression {
 			}
 		}
 
-		for (int i = 0; i < nOut; i++) {
-			if (i == argmax) {
-				t[i] = 1;
-			} else {
-				t[i] = 0;
-			}
-		}
+		// 出力は確率で表されているため、ラベル（分類されたクラス）に変換
+		// 最大値のインデックスには1を、それ以外は0をセット
+		Integer[] t = new Integer[nOut];
+		Arrays.fill(t, 0);
+		t[argmax] = 1;
 
 		return t;
 	}
